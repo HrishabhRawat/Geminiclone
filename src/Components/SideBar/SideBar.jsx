@@ -20,7 +20,18 @@ function SideBar() {
             </div>
         </div>
         <div className='bottom'>
-
+            <div className='bottom-icon recent-entry'>
+                <img src={assets.question_icon}/>
+                <p>Help</p>
+            </div>
+            <div className='bottom-icon recent-entry'>
+                <img src={assets.history_icon}/>
+                <p>Activity</p>
+            </div>
+            <div className='bottom-icon recent-entry'>
+                <img src={assets.setting_icon}/>
+                <p>Setting</p>
+            </div>
         </div>
     </div>
   )
