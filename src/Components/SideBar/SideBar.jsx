@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React, { useCallback, useContext, useState } from 'react';
 import './SideBar.css';
 import { assets } from '../../assets/assets/assets';
-
-
+import { Context } from '../../context/Context';
 
 
 
 
 function SideBar() {
 
-const [extended, setExtended] = useState(false);
-
+    const [extended, setExtended] = useState(false);
+    const {onSent, previousPrompt, setRecentPrompt} = useContext(Context);
 
   return (
     <div className='sidebar'>
@@ -23,10 +22,17 @@ const [extended, setExtended] = useState(false);
             {extended?
             <div className='recent'>
                 <p className='recent-title'>Recent</p>
-                <div className='recent-entry'>
-                    <img src={assets.message_icon}/>
-                    <p>What is react ...</p>
-                </div>
+                {
+                    previousPrompt.map((item, index)=>{
+                        return (
+                            <div className='recent-entry'>
+                                <img src={assets.message_icon}/>
+                                <p>{item.slice(0, 18)}...</p>
+                            </div>
+                        )
+                    })
+                }
+                
             </div>
             :null
             }
