@@ -11,6 +11,13 @@ function SideBar() {
     const [extended, setExtended] = useState(false);
     const {onSent, previousPrompt, setRecentPrompt} = useContext(Context);
 
+
+    const loadPrompt = async (prompt) =>{
+        setRecentPrompt(prompt);
+
+        await onSent(prompt);
+    }
+
   return (
     <div className='sidebar'>
         <div className='top'>
@@ -25,7 +32,7 @@ function SideBar() {
                 {
                     previousPrompt.map((item, index)=>{
                         return (
-                            <div className='recent-entry'>
+                            <div onClick={()=>loadPrompt(item)} className='recent-entry'>
                                 <img src={assets.message_icon}/>
                                 <p>{item.slice(0, 18)}...</p>
                             </div>
